@@ -1,0 +1,115 @@
+{% extends "layout/templateadmin.html" %} {% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Dataset Model Klasifikasi</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{url_for('index')}}">Home</a>
+        </li>
+        <li class="breadcrumb-item">Dataset</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+<!-- table data training -->
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Data Training</h5>
+            <!-- Table Data Weather -->
+
+
+
+            <table id="datatable" class="display nowrap" style="width:100%">
+              <thead>
+                <tr>
+                  <th>PH</th>
+                  <th>Hardness</th>
+                  <th>Solid (mg/l)</th>
+                  <th>Cholamines (ppm)</th>
+                  <th>Sulfate (mg/L)</th>
+                  <th>Conductivity (μS/cm)</th>
+                  <th>Organic Carbon (mg/L)</th>
+                  <th>CTrihalomethanes (ppm)</th>
+                  <th>Turbidity (NTU)</th>
+                  <th>Potability</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for mc in datatraining %}
+                <tr>
+                  <td>{{ mc[0] }}</td>
+                  <td>{{ mc[1] }}</td>
+                  <td>{{ mc[2] }}</td>
+                  <td>{{ mc[3] }}</td>
+                  <td>{{ mc[4] }}</td>
+                  <td>{{ mc[5] }}</td>
+                  <td>{{ mc[6] }}</td>
+                  <td>{{ mc[7] }}</td>
+                  <td>{{ mc[8] }}</td>
+                  <td>{{ mc[9] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- table data testing -->
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Data Testing</h5>
+          <!-- Table Data Weather -->
+
+          <table id="datatesting" class="display nowrap" style="width:100%">
+            <thead>
+              <tr>
+                <th>PH</th>
+                <th>Hardness</th>
+                <th>Solid (mg/l)</th>
+                <th>Cholamines (ppm)</th>
+                <th>Sulfate (mg/L)</th>
+                <th>Conductivity (μS/cm)</th>
+                <th>Organic Carbon (mg/L)</th>
+                <th>CTrihalomethanes (ppm)</th>
+                <th>Turbidity (NTU)</th>
+                <th>Potability</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for mc in datatest %}
+              <tr>
+                <td>{{ mc[0] }}</td>
+                <td>{{ mc[1] }}</td>
+                <td>{{ mc[2] }}</td>
+                <td>{{ mc[3] }}</td>
+                <td>{{ mc[4] }}</td>
+                <td>{{ mc[5] }}</td>
+                <td>{{ mc[6] }}</td>
+                <td>{{ mc[7] }}</td>
+                <td>{{ mc[8] }}</td>
+                <td>{{ mc[9] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

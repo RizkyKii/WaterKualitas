@@ -1,0 +1,193 @@
+{% extends "layout/templateadmin.html" %} {% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">Home</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+  <section class="section">
+    <div class="row">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title" style="text-align: center">SELAMAT DATANG DI SISTEM KLASIFIKASI KUALITAS AIR <br> MENGGUNAKAN METODE SUPPORT VECTOR MACHINE</h1>
+            <!-- <img src="static/img/pie.png" alt="Grafik Bar"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="section">
+    <div class="row">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="text-align: center">Jumlah Dataset</h5>
+            <img src="static/img/pie.png" alt="Grafik Bar">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section> -->
+
+  <section class="section dataset">
+    <div class="row">
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card sales-card">
+
+          <div class="card-body">
+            <h5 class="card-title">Data Training <span>| Jumlah</span></h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                {{data1}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Data Training Card -->
+
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card sales-card">
+
+          <div class="card-body">
+            <h5 class="card-title">Data Testing <span>| Jumlah</span></h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                {{data2}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Data Testing Card -->
+
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card sales-card">
+
+          <div class="card-body">
+            <h5 class="card-title">Data Klasifikasi <span>| Jumlah</span></h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                {{ data3 }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Data Klasifikasi Card -->
+    </div>
+  </section>
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Informasi Sistem</h5>
+
+      <!-- Bordered Tabs Justified -->
+      <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
+        <li class="nav-item flex-fill" role="presentation">
+          <button class="nav-link w-100 active" id="svm-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">Support Vector Machine</button>
+        </li>
+        <li class="nav-item flex-fill" role="presentation">
+          <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Kualitas Air</button>
+        </li>
+        <li class="nav-item flex-fill" role="presentation">
+          <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Model SVM</button>
+        </li>
+      </ul>
+      <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+        <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="svm-tab">
+          <p>Support Vector Machine (SVM) dikenalkan pertama kali oleh Vapnik tahun 1992 sebagai salah satu metode learning machine yang bekerja dengan prinsip Structural Risk Minimization (SRM) yang bertujuan untuk menemukan hyperplane terbaik yang memisahkan dua buah class pada input space. Metode ini menggunakan hipotesis berupa fungsi – fungsi linier dalam sebuah ruang fitur yang berdimensi tinggi, dengan mengimplementasikan learning bias yang berasl dari teori pembelajaran statistik. Tingkat akurasi pada model yang akan dihasilkan oleh proses peralihan dengan SVM sangat bergantung terhadap fungsi kernel dan parameter yang digunakan</p>
+          <br>
+          <p>Data pada suatu dataset diberikan variabel x_i, sedangkan untuk kelas pada dataset diberikan variabel y_i . Metode SVM membagi dataset menjadi 2 kelas. Kelas pertama yang dipisah oleh hyperline bernilai 1, sedangkan kelas lainnya bernilai -1. </p>
+          <br>
+          <p>x_i  .W+b ≥1 untuk y_i=1………………………………………(1)<br>
+            x_i  .W+b ≤-1 untuk y_i=-1…………………………………..(2)<br><br>
+            Keterangan:<br>
+            x_i 	= Data ke -i<br>
+            W  	= Nilai bobot support vector yang tegak lurus dengan hyperline<br>
+            b 	= Nilai bias<br>
+            Y_i	= Kelas data ke -i<br><br>
+            </p>
+            <p>Bobot vector (w) adalah garis vector yang tegak lurus antara titik pusat koordinat dengan garis hyperline. Bias (b) merupakan koordinar garis relative terhadap titik koordinat. Persamaan (3) merupakan persamaan untuk menghitung nilai b, sedangkan persamaan (4) merupakan persamaan untuk mencari nilai w.</p><br>
+            <p>
+              b= -1/2  (w.x^++w.x^-)………………………………………………….(3)<br>
+              w= ∑_i^n▒〖=1〗  α_i y_i x_i………………………………………………………..(4)<br><br>
+              Keterangan:<br>
+              B	= nilai bias<br>
+            〖w.x〗^+	= nilai bobot untuk kelas data positive<br>
+            〖w.x〗^-	= nilai bobot untuk kelas data negative<br>
+              w	= bobot vector<br>
+              α_i	= nilai bobot data ke-i<br>
+              y_i	= kelas data ke-i<br>
+              x_i	= data ke-i<br><br>
+              H_1 adalah hyperline pendukung dari kelas +1 yang memiliki fungsi wx1+b= +1.<br>
+              Margin=|dH_1-〖dH〗_2 |=  2/(||w||)…………………………….…….…….(5)<br><br>
+              Keterangan:<br>
+              dH_1	= jarak hyperline pendukung kelas +1<br>
+              dH_2	= jarak hyperline pendukung kelas -1<br>
+              Minimize J_1 [w]=  1/2  〖||w||〗^2………………………..………….……..…(6)<br>
+              Dengan <br><br>
+              yi(xi.w+b)-1 ≥0,i=1,…,n…………………………...…………(7)<br>
+            </p>
+            <center><img src="static/img/svm.png" alt="hyperline class +1 dan -1" width="300" height="200"></center>
+            <p>Gambar diatas menunjukkan patern-patern yang merupakan anggota dari dua buah class: +1 dan -1. Pattern yang disimbolkan dengan kotak merah, sedangkan pattern pafa kelas +1 disimbolkan dengan lingkaran kuning. Problem klasifikasi dapat diterjemahkan dengan usaha menemukan garis (hyperline) yang memisahkan antara kedua kelompok tersebut. Berbagai alternatif pemisah (discrimination boundaries) ditunjukkan pada gambar diatas.</p>
+            <p>Hyperline pemisah terbaik antara kedua kelas ditemukan dengan melakukan pengukuran margin hyperline tersebut dan mencari titik maksimalnya. Margin adalah jarak antara hyperline dengan pattern terdekat dari masing-masing class. Pattern yang paling dekat disebut dengan Support Vector. Garis solid pada gambar 2.1(b) menunjukkan hyperline yang terbaik, yaitu yang terletak tepat pada tengah-tengah kedua class, sedangkan titik merah dan kuning yang berada dalam lingkran hitam adalah support vector.</p>
+
+        </div>
+        <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
+         <p>Berdasarkan keputusan Menteri Kesehatan Republik Indonesia Nomor : 907/MENKES/SK/VII/2002 tentang syarat-syarat dan pengawasan kualitas air minum, disebutkan bahwa air minum adalah air yang melalui proses pengolahan atau tanpa proses pengolahan yang memenuhi staray kesehatan dan dapat langsung diminum </p>
+         <p>Untuk mengetahui bahwa air memiliki kualitas yang sesuai standar kesehatan dapat diketahui dari zat-zat atau mineral yang terkandung didalamnya. Proses klasifikasi kualitas air umumnya dilakukan menggunakan perhitungan rumus secara manual seperti menghitung Water Quality Index (WQI) dan STORET </p>
+         <p>
+          Parameter yang akan digunakan untuk mengukur kualitas air pada Perumda Tirta Pase memiliki total sepuluh varibel. Output yang dihasilkan dari pengukuran kualitas air adalah air yang memenuhi syarat dan air yang tidak memenuhi syarat kelayakan untuk diminum. Adapun sepuluh variabel tersebut terdiri dari PH, Hardness, Solid, Chloramines, Sulfate, Conductivity, Organic_Carbon, Trihalomathanes, Turbidity, dan potability. Definisi dari setiap parameter kualitas air [8] adalah sebagai berikut :
+          <ol>
+            <br><li>PH. PH (Potensial Hidrogen) adalah konsentrasi ion hydrogen yang ada dalam suatu larutan, dan memungkinkan menjadi pembeda antara status asam dan basa ataupun media netral seperti air. WHO merekomendasikan batas maksimum PH yang diperbolehkan adalah 6,5 hingga 8,5.</li>
+            <br><li>Hardness. Hardness merupakan tingkat kemampuan air untuk mengendapkan sabun melalui adanya ion-ion logam bervalensi seperti kalsium dan magnesium. batas maksimum Hardness yang diperbolehkan adalah 200 mg/L</li>
+            <br><li>Solids. Solid merupakan jumlah anorganik dan bahan organic yang berada pada larutan air.  batas maksimum Solids yang diperbolehkan adalah 1000 ppm </li>
+            <br><li>Chloramines. Klorin atau kloramin adalah disinfektan yang digunakan untuk sistem air umum. Kloramin terbentuk ketika ammonia ditambahkan ke klorin untuk mengolah air minum.  batas maksimum Hardness yang diperbolehkan adalah 4 ppm</li>
+            <br><li>Sulfate. Sulfate merupakan zat yang menyebabkan rasa yang pekat dengan kadar tinggi serta dapat menyebabkan efek pencahar apabila dikonsumsi oleh manusia dengan sebab tidak terbiasa.  batas maksimum sulfate yang diperbolehkan adalah 1000 mg/L</li>
+            <br><li>Conductivity. Konsentrasi jumlah kation atau ion yang bermuatan positif dan anion atau ion bermuatan negative di dalam air. Peningkatan konsentrasi ion meningkatkan konduktivitas listrik di air.  batas maksimum conductivuty yang diperbolehkan adalah 400 ps/cm</li>
+            <br><li>Organic_carbon. Organic_carbon merupakan zat yang berasal dari bahan atau senyawa yang terurai dalam air.  batas maksimum Organic_Carbon yang diperbolehkan adalah 10 ppm</li>
+            <br><li>Trihalomethanes. Trihalomethanes (THMs) merupakan zat yang terbentuk dalam air minum terutama sebagai akibat dari kloronasi bahan organic.  batas maksimum Trihalomathanes yang diperbolehkan adalah 80 ppm</li>
+            <br><li>Turbidity. Turbidity adalah tingkat kekeruhan yang ada di air.  batas maksimum Turbidity yang diperbolehkan adalah 5 NTU</li>
+            <br><li>Potability. Potability adalah indikator air yang memenuhi syarat minum atau tidak</li>
+          </ol>
+         </p>
+        </div>
+        <div class="tab-pane fade" id="bordered-justified-contact" role="tabpanel" aria-labelledby="contact-tab">
+        Langkah -langkah dalam pembuatan model Support Vector Machine untuk klaisifkasi kualitas air adalah sebagai berikut :
+        <ol>
+          <br><li>Dataset. Dataset merupakan data yang akan digunakan sebagai bahan uji penelitian. Pada penelitian ini datayang diperoleh adalah data uji kualitas air pada perumda Tirta Pase.</li>
+          <br><li>Reprosesing Data. Setelah semua data diperoleh, tidak semua data dapat digunakan. Data yang telah diperoleh perlu melewati tahapan pengolahan awal. Proses utamanya adalah menghilangkan data yang tidak lengkap atau null.</li>
+          <br><li>Validasi Data. Proses ini untuk memastikan Kembali data yang dimiliki telah dapat diproses menggunakan metode SVM.</li>
+          <br><li>Split Data. Tahapan ini akan membagi data menjadi dua bagian yaitu data training dan data testing. </li>
+          <br><li>Penerapan fungsi kernel. Fungsi kernel adalah salah satu elemen penting dalam Support Vector Machine (SVM) dalam machine learning. Fungsi kernel digunakan untuk mengubah data ke dalam ruang fitur yang memiliki dimensi yang lebih tinggi, sehingga memungkinkan SVM untuk menemukan batas keputusan yang lebih kompleks dan memisahkan kelas data yang tidak linear terpisah. </li>
+          <br><li>Training. Pada tahapan ini model machine learning akan diajarkan pola-pola dalam data. Model diberikan data yang berisi contoh-contoh dengan input dan output yang sesuai. Model menggunakan data tersebut untuk menyesuaikan parameter atau koefisien internalnya sehingga dapat melakukan klasifikasi.</li>
+          <br><li>Testing. Tahapan ini dilakukan untuk menguji performa model Machine Learning setelah proses pelatihan (training) selesai.</li>
+          <br><li>Klasifikasi. Setelah didapatkan model SVM, selanjutnya adalah melakukan klasifikasi menggunakan data testing.</li>
+          <br><li>Menampilkan hasil kualitas air. Selanjutnya adalah mendapatkan output dari klasifikasi kualitas air yang dilakukan. Output yang didapatkan ada dua kelas yaitu nilai potability, memenuhi syarat atau tidak.</li>
+        </ol>
+        <br>
+        <p>Untuk melihat model yang digunakan pada sistem klasifikasi kualitas air ini dapat dilihat pada link berikut : <a href="https://colab.research.google.com/drive/1NoguSM4WPUfogH-iR2JbhmHrUhALqBwO?usp=sharing">Model Klasifikasi Kualitas Air Menggunakan SVM</a>.</p>
+        </div>
+      </div><!-- End Bordered Tabs Justified -->
+
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

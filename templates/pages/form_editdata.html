@@ -1,0 +1,184 @@
+{% extends "layout/templateadmin.html" %} {% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Edit Dataset</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{url_for('index')}}">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="{{url_for('datatable')}}">datatable</a>
+        </li>
+        <li class="breadcrumb-item active">Form Edit Data</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section edit_data">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Edit Dataset Air</h5>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %} {% for category, message in messages %} {% if
+          category == "error" %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endif %} {% endfor %} {% endif %} {% endwith %}
+          <!-- General Form Elements -->
+          {% for ma in data %}
+          <form action="/updatedata/{{ma[0]}}" method="POST">
+            <div class="row mb-3">
+              <label for="ph" class="col-sm-3 col-form-label">PH</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="ph"
+                  id="ph"
+                  class="form-control"
+                  placeholder="Masukkan nilai PH"
+                  value="{{ ma[3] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Hardness" class="col-sm-3 col-form-label">Hardness</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Hardness"
+                  id="Hardness"
+                  class="form-control"
+                  placeholder="Masukkan nilai Hardness"
+                  value="{{ ma[4] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Solid" class="col-sm-3 col-form-label">Solid (mg/l)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Solids"
+                  id="Solids"
+                  class="form-control"
+                  placeholder="Masukkan nilai Solids"
+                  value="{{ ma[5] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Chloramines" class="col-sm-3 col-form-label">Chloramines (ppm)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Chloramines"
+                  id="Chloramines"
+                  class="form-control"
+                  placeholder="Masukkan nilai Chloramines"
+                  value="{{ ma[6] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Sulfate" class="col-sm-3 col-form-label">Sulfate (mg/L)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Sulfate"
+                  id="Sulfate"
+                  class="form-control"
+                  placeholder="Masukkan nilai Sulfate"
+                  value="{{ ma[7] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Conductivity" class="col-sm-3 col-form-label" >Conductivity (μS/cm)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Conductivity"
+                  id="Conductivity"
+                  class="form-control"
+                  placeholder="Masukkan nilai Conductivity"
+                  value="{{ ma[8] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Organic_carbon" class="col-sm-3 col-form-label">Organic_Carbon (mg/L)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Organic_carbon"
+                  id="Organic_carbon"
+                  class="form-control"
+                  placeholder="Masukkan nilai Organic carbon"
+                  value="{{ ma[9] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Trihalomethanes" class="col-sm-3 col-form-label">Trihalomethanes (ppm)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Trihalomethanes"
+                  id="Trihalomethanes"
+                  class="form-control"
+                  placeholder="Masukkan nilai Trihalomethanes"
+                  value="{{ ma[10] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Turbidity" class="col-sm-3 col-form-label">Turbidity (NTU)</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Turbidity"
+                  id="Turbidity"
+                  class="form-control"
+                  placeholder="Masukkan nilai Turbidity"
+                  value="{{ ma[11] }}"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="Potability" class="col-sm-3 col-form-label">Potability</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  name="Potability"
+                  id="Potability"
+                  class="form-control"
+                  placeholder="Masukkan nilai Potability"
+                  value="{{ ma[12] }}"
+                />
+              </div>
+            </div>
+
+            <div class="d-md-block col-3 mx-auto">
+              <button type="submit" name="submit" class="btn btn-primary">
+                Edit
+              </button>
+            </div>
+          </form>
+          <!-- End General Form Elements -->
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+{% endblock %}

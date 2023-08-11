@@ -1,0 +1,248 @@
+
+{% extends "layout/templateadmin.html" %} {% block content %}
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Klasifikasi Air</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{url_for('index')}}">Home</a></li>
+          <li class="breadcrumb-item active">Klasifikasi Air</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    
+    <section class="section upload" >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Upload Klasifikasi Air</h5>
+          <form
+            action="{{url_for('upload_file')}}"
+            method="POST"
+            enctype="multipart/form-data"
+            style="margin-top: 28px"
+          >
+            <div class="row mx-auto">
+              <div class="col-sm-10">
+                <input
+                  class="form-control mb-3"
+                  type="file"
+                  name="file"
+                  id="file"
+                />
+                <h6>file harus ekstensi .csv</h6>
+              </div>
+              <div class="col-sm-2">
+                <input class="form-control btn btn-primary" type="submit" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="section klasifikasi">
+            <div class="col-lg-12">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Klasifikasi Air</h5>
+
+            <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-octagon me-1"></i>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> -->
+
+           
+            <!-- General Form Elements -->
+            <form action="{{url_for('predict')}}" method="POST" class="needs-validation" novalidate>
+                <div class="row mb-3">
+                  <label for="ph" class="col-sm-3 col-form-label">PH</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="ph"
+                      id="ph"
+                      class="form-control"
+                      placeholder="Masukkan nilai PH"
+                      value="{{ph}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Hardness" class="col-sm-3 col-form-label">Hardness</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Hardness"
+                      id="Hardness"
+                      class="form-control"
+                      placeholder="Masukkan nilai Hardness"
+                      value="{{Hardness}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Solid" class="col-sm-3 col-form-label">Solid (mg/l)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Solids"
+                      id="Solids"
+                      class="form-control"
+                      placeholder="Masukkan nilai Solids"
+                      value="{{Solids}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Chloramines" class="col-sm-3 col-form-label">Chloramines (ppm)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Chloramines"
+                      id="Chloramines"
+                      class="form-control"
+                      placeholder="Masukkan nilai Chloramines"
+                      value="{{Chloramines}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Sulfate" class="col-sm-3 col-form-label">Sulfate (mg/L)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Sulfate"
+                      id="Sulfate"
+                      class="form-control"
+                      placeholder="Masukkan nilai Sulfate"
+                      value="{{Sulfate}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Conductivity" class="col-sm-3 col-form-label" >Conductivity (μS/cm)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Conductivity"
+                      id="Conductivity"
+                      class="form-control"
+                      placeholder="Masukkan nilai Conductivity"
+                      value="{{Conductivity}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Organic_carbon" class="col-sm-3 col-form-label">Organic_Carbon (mg/L)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Organic_carbon"
+                      id="Organic_carbon"
+                      class="form-control"
+                      placeholder="Masukkan nilai Organic carbon"
+                      value="{{Organic_carbon}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Trihalomethanes" class="col-sm-3 col-form-label">Trihalomethanes (ppm)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Trihalomethanes"
+                      id="Trihalomethanes"
+                      class="form-control"
+                      placeholder="Masukkan nilai Trihalomethanes"
+                      value="{{Trihalomethanes}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row mb-3">
+                  <label for="Turbidity" class="col-sm-3 col-form-label">Turbidity (NTU)</label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      name="Turbidity"
+                      id="Turbidity"
+                      class="form-control"
+                      placeholder="Masukkan nilai Turbidity"
+                      value="{{Turbidity}}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Masukkan nilai anda.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="d-md-block col-3 mx-auto" style="margin-bottom: 24px; place-items: center">
+                  <button type="submit" name="submit" class="btn btn-primary">
+                    Klasifikasi
+                  </button>
+                </div>
+
+                <div class="row mb-3" >
+                  <label class="col-sm-3 col-form-label">Hasil Klasifikasi</label>
+                  <div class="col-sm-8">
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Lihat hasil Klasifikasi Disini"
+                        value="{{Potability}}"
+                        readonly
+                      />
+                    </div>
+                  </div>
+              </form>
+        </div>
+        </div>
+
+        </div>
+
+    </section>
+
+  </main><!-- End #main -->
+  {% endblock %}

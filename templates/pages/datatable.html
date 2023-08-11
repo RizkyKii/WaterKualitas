@@ -1,0 +1,91 @@
+{% extends "layout/templateadmin.html" %} {% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Data Klasifikasi</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{url_for('index')}}">Home</a>
+        </li>
+        <li class="breadcrumb-item">Data Klasifikasi</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Data Klasifikasi</h5>
+            <!-- Table Data Weather -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %} {% for category, message in messages %} {% if
+            category == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+            <!-- % else: %}
+            <div class="alert alert-danger">{{ message }}</div> -->
+            {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+            <table id="datatable" class="display nowrap" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>dibuat pada</th>
+                  <th>diedit pada</th>
+                  <th>PH</th>
+                  <th>Hardness</th>
+                  <th>Solid (mg/l)</th>
+                  <th>Cholamines (ppm)</th>
+                  <th>Sulfate (mg/L)</th>
+                  <th>Conductivity (μS/cm)</th>
+                  <th>Organic Carbon (mg/L)</th>
+                  <th>CTrihalomethanes (ppm)</th>
+                  <th>Turbidity (NTU)</th>
+                  <th>Potability</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for mc in data %}
+                <tr>
+                  <td class="mx-auto">
+                    <a href="/editdata/{{ mc[0] }}">
+                      <button class="btn btn-warning" type="button" name="edit">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                    </a>
+                    <button
+                      class="btn btn-danger"
+                      type="button"
+                      name="hapus"
+                      onclick="deletedata('{{ mc[0] }}')"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                  <td>{{ mc[1] }}</td>
+                  <td>{{ mc[2] }}</td>
+                  <td>{{ mc[3] }}</td>
+                  <td>{{ mc[4] }}</td>
+                  <td>{{ mc[5] }}</td>
+                  <td>{{ mc[6] }}</td>
+                  <td>{{ mc[7] }}</td>
+                  <td>{{ mc[8] }}</td>
+                  <td>{{ mc[9] }}</td>
+                  <td>{{ mc[10] }}</td>
+                  <td>{{ mc[11] }}</td>
+                  <td>{{ mc[12] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+{% endblock %}
